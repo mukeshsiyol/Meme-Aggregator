@@ -1,0 +1,20 @@
+{
+"info": {
+"name": "Meme Aggregator API",
+"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+},
+"item": [
+{
+"name": "GET /tokens",
+"request": {
+"method": "GET",
+"header": [],
+"url": { "raw": "http://localhost:3000/tokens", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["tokens"] }
+}
+},
+{
+"name": "GET /health",
+"request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:3000/health", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["health"] } }
+}
+]
+}

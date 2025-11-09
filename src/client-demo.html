@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Meme Aggregator — Live Demo</title>
+    <script src="https://cdn.socket.io/4.7.1/socket.io.min.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #0b0c10;
+        color: #e8e8e8;
+        padding: 20px;
+      }
+      pre {
+        background: #1f2833;
+        color: #66fcf1;
+        padding: 15px;
+        border-radius: 10px;
+        overflow-y: scroll;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>💹 Meme Aggregator Live Feed</h1>
+    <p>Watching real-time token updates from WebSocket server...</p>
+    <pre id="log"></pre>
+
+    <script>
+      const log = (msg) => {
+        const box = document.getElementById("log");
+        box.textContent += msg + "\n";
+        box.scrollTop = box.scrollHeight;
+      };
+
+      const socket = io("http://localhost:3000/discover");
+
+      socket.on("connect", () => log(`✅ Connected: ${socket.id}`));
+      socket.on("token_update", (data) =>
+        log(`[token_update] ${JSON.stringify(data)}`)
+      );
+      socket.on("volume_spike", (data) =>
+        log(`[volume_spike] ${JSON.stringify(data)}`)
+      );
+      socket.on("disconnect", () => log("❌ Disconnected"));
+    </script>
+  </body>
+</html>
